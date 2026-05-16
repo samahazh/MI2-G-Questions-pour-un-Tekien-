@@ -4,6 +4,10 @@
 #include "qcm.h"
 #include "teachers.h"
 
+#define COULEUR_BLEUE "\033[1;34m"
+#define COULEUR_ROUGE "\033[1;31m"
+#define COULEUR_RESET "\033[0m"
+
 void launchTeacherMode() {
     char motDePasseSaisi[50];
     const char vraiMotDePasse[] = "prof123";
@@ -11,16 +15,16 @@ void launchTeacherMode() {
     // Notre "panier" magique pour sécuriser toutes les saisies de chiffres
     char bufferSaisie[MAX_TEXT]; 
 
-    printf("\n==========================================\n");
+    printf("\n%s==========================================\n", COULEUR_BLEUE);
     printf("             MODE ENSEIGNANT\n");
-    printf("==========================================\n");
+    printf("==========================================%s\n", COULEUR_RESET);
     printf("Mot de passe requis : ");
     
     fgets(motDePasseSaisi, sizeof(motDePasseSaisi), stdin);
     motDePasseSaisi[strcspn(motDePasseSaisi, "\n")] = 0;
 
     if (strcmp(motDePasseSaisi, vraiMotDePasse) != 0) {
-        printf("\n[ALERTE] Mot de passe incorrect. Retour au menu principal...\n");
+        printf("\n%s[ALERTE] Mot de passe incorrect. Retour au menu principal...%s\n",COULEUR_ROUGE, COULEUR_RESET);
         return; 
     }
 
