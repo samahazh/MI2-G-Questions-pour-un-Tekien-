@@ -1,21 +1,9 @@
-#ifndef TEACHERS_H
-#define TEACHERS_H
+#ifndef TEACHERS_H // Vérifie si l'ordinateur n'a pas déjà lu ce fichier "TEACHERS_H".
 
-#include "qcm.h" // Nécessaire car on utilise la structure QCM
+#define TEACHERS_H // Si ce n'est pas le cas, on le définit maintenant.
 
-/**
- * Fonction principale du mode enseignant :
- * - Gère l'authentification par mot de passe
- * - Appelle la création de QCM si le mot de passe est bon
- */
-void launchTeacherMode();
+#include "qcm_structure.h" // Contient nos structures
 
-/**
- * Fonction de création de QCM :
- * - Saisie du titre et des paramètres
- * - Saisie des questions et des bonnes réponses
- * - Sauvegarde dans un fichier .bin
- */
-void createQCM();
+void launchTeacherMode(); // Fonction principale qui lance le menu du prof 
 
 #endif
