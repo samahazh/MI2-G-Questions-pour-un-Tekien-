@@ -1,18 +1,26 @@
+# EXEC : nom final de l'application
 EXEC = programme_qcm
+
+# SRC : liste de tous les fichiers sources (fichiers.c)
 SRC = main.c student.c teachers.c
-OBJ = $(SRC:.c=.o)
+
+# CC = C Compiler. On utilise le compilateur "gcc".
 CC = gcc
+
+# CFLAGS (C Flags) : les options de compilation. 
+# -Wall et -Wextra : activent les avertissements de securite.
 CFLAGS = -Wall -Wextra -std=c11
 
+# Demande a fabriquer l'executable final.
 all: $(EXEC)
 
-$(EXEC): $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+# Créer le programme final ($(EXEC)) a partir des petits fichiers sources
+$(EXEC): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 
-%.o: %.c qcm.h
-	$(CC) $(CFLAGS) -c $< -o $@
-
+# "rm -f" : supprime (remove)
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -f $(EXEC)
 
+# "re" : lance le nettoyage (clean) puis la compilation (all)
 re: clean all
