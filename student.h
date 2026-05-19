@@ -1,15 +1,9 @@
-#ifndef STUDENT_H
-#define STUDENT_H
+#ifndef STUDENT_H // Vérifie si l'ordinateur n'a pas déjà lu ce fichier "STUDENT_H".
 
-#include "qcm.h" // On inclut qcm.h car on va manipuler la structure QCM
+#define STUDENT_H // Si ce n'est pas le cas, on le définit maintenant.
 
-/**
- * Lance le mode étudiant :
- * - Demande le nom du fichier
- * - Charge le QCM
- * - Pose les questions
- * - Affiche la note finale
- */
-void launchStudentMode();
+#include "qcm_structure.h" // Contient nos structures
+
+void launchStudentMode(); // Fonction principale qui lance le menu de l'étudiant
 
 #endif
