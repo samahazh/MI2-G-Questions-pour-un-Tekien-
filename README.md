@@ -1,55 +1,71 @@
-# 🧠 Questions-pour-un-Tekien 
-**Projet QCM 
+# Questions pour un Tekien - Projet QCM
 
-## 👥 Équipe & Contexte
+Projet réalisé dans le cadre du module **Informatique – PréING1 2025-2026**
 
-Projet réalisé dans le cadre du module **Informatique – PréING1 2025-2026** à **CY Tech**. 
+## Équipe :
 
-**Membres du groupe :
 * Brahimi Sarah
 * Azhani Samah
 * Rasamuraly Atcchaya
 
 ---
 
-## 📝 Présentation du projet
+## Compilation et Exécution :
 
-Ce projet consiste à développer une application de gestion de QCM en langage C, fonctionnant dans le terminal à travers différents menus interactifs. Elle est destinée à la fois aux enseignants (pour la création) et aux étudiants (pour l'évaluation).
+Le projet utilise un fichier `Makefile` pour faciliter la compilation : 
 
-**L’objectif principal est de proposer une plateforme simple permettant de :
-* Créer et enregistrer des questionnaires à choix multiples.
-* Gérer différentes configurations et règles de QCM.
-* Faire passer des évaluations aux étudiants.
-* Corriger automatiquement les réponses.
-* Calculer une note finale sur 20.
+**1. Compiler le programme :**
+Ouvrez le terminal dans le dossier du projet et tapez :
+`make re`
 
-Ce projet met en pratique des notions fondamentales de la programmation en C : gestion de fichiers, structures de données, modularité du code et interactions utilisateur.
+**2. Lancer l'application :**
+Une fois la compilation terminée, exécutez le programme avec :
+`./programme_qcm`
+
+**3. Nettoyer le dossier :**
+Pour supprimer l'exécutable généré :
+`make clean`
 
 ---
 
-## 🎯 Fonctionnalités principales
+## Présentation du projet :
 
-### 👨‍🏫 Mode Enseignant
-Le mode enseignant est l'espace d'administration, protégé par un mot de passe.
-Il permet de :
+Ce projet consiste à développer une application de gestion de QCM en langage C, fonctionnant dans le terminal à travers différents menus. Elle est faite pour les enseignants (pour la création des QCM) et les étudiants (pour passer l'évaluation).
+
+**L’objectif principal est de proposer une plateforme permettant de :**
+* Créer et enregistrer des QCM
+* Gérer les options de chaque QCM.
+* Faire passer des évaluations aux étudiants.
+* Corriger automatiquement les réponses et calculer une note sur 20.
+
+Ce projet met en pratique des notions de la programmation en C : la gestion de fichiers, les structures, les saisies clavier et les tableaux.
+
+---
+
+## Fonctionnalités principales :
+
+### Mode Enseignant
+Le mode enseignant est l'espace de gestion des QCM, protégé par un mot de passe (`prof123`).
+
+**Il permet de :**
 * Créer un nouveau QCM.
-* Ajouter des questions et des réponses.
+* Ajouter des questions et des propositions de réponses.
 * Définir les bonnes réponses.
 * Sauvegarder les QCM dans des fichiers binaires.
 * Configurer les paramètres spécifiques de chaque QCM.
 
 **Paramètres de QCM disponibles :**
-* ✅ Réponses multiples possibles.
-* ❌ Points négatifs en cas de mauvaise réponse.
-* ⏭️ Mode séquentiel (obligation de répondre avant de continuer).
+* Réponses multiples.
+* Points négatifs en cas de mauvaise réponse.
+* Mode séquentiel (obligation de répondre pour passer à la suite).
 
-### 👨‍🎓 Mode Étudiant
-Le mode étudiant est l'espace de test.
-Il permet de :
-* Consulter la liste des QCM disponibles.
-* Choisir un questionnaire.
-* Répondre aux questions interactives.
-* Obtenir une correction automatique immédiate.
+### Mode Étudiant
+Le mode étudiant est l'espace d'évaluation.
+
+**Il permet de :**
+* Ouvrir un questionnaire existant.
+* Répondre aux questions.
+* Obtenir une correction automatique détaillée.
 * Recevoir une note finale sur 20.
 
 **Selon les paramètres définis par l'enseignant, l’étudiant peut :**
@@ -58,74 +74,43 @@ Il permet de :
 
 ---
 
-## 🚀 Installation et Exécution
+## Architecture du projet :
 
-Le projet utilise un `Makefile` pour faciliter la compilation.
+Le code est modulé pour une meilleure lisibilité :
+* `main.c` : Contient le menu principal de l'application.
+* `enseignant.c` / `enseignant.h` : Code pour le mode Enseignant (création et configuration de QCM).
+* `etudiant.c` / `etudiant.h` : Code pour le mode Étudiant (passage de QCM et notation).
+* `qcm_structure.h` : Définition des structures (`QCM`, `Question`, `Parametres`).
+* `Makefile` : Fichier de configuration pour la compilation.
 
-1. **Ouvrir le terminal** dans le dossier du projet.
-2. **Compiler le programme** en tapant simplement :
-   
-   make
 ---
 
-## 🚀 Installation et Exécution
+## Sauvegarde des QCM :
 
-Le projet utilise un `Makefile` pour faciliter la compilation.
+Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom du QCM créé par l'enseignant.
+*Exemples : `sciences.bin`, `culture.bin`, `sport.bin`.*
 
-1. **Ouvrir le terminal** dans le dossier du projet.
-2. **Compiler le programme** en tapant simplement :
-   make
+---
 
-Lancer l'application :
-./programme_qcm
+## Sécurité :
 
-Nettoyer les fichiers de compilation:
-make clean
+Le programme intègre des sécurités pour empêcher les erreurs lors de l'utilisation :
+* Utilisation de `fgets` et `atoi` pour sécuriser les saisies de l'utilisateur (lettres au lieu de chiffres, choix hors limites).
+* Vérification si le fichier existe bien avant de tenter de l'ouvrir.
+* Boucles de sécurité obligeant l'utilisateur à réessayer en cas d'erreur de saisie.
 
-📁 Architecture du projet
-Le code est modulaire pour une meilleure lisibilité et maintenance :
--main.c : Point d'entrée principal du programme.
--teachers.c / teachers.h : Fonctions relatives au mode Enseignant (création, gestion).
--student.c / student.h : Fonctions relatives au mode Étudiant (passage de test, notation).
--qcm.h / utile.h : Définition des structures de données et fonctions utilitaires.
--Makefile : Fichier de configuration pour la compilation automatisée.
+---
 
-💾 Sauvegarde des QCM
-Les QCM sont enregistrés dans des fichiers .bin afin d'être persistants et réutilisés plus tard. Chaque fichier porte le nom du QCM créé.
-Exemples : Sciences.bin, Culture_Generale.bin, test.bin.
+## Références couleurs :
 
-🛡️ Gestion des erreurs & Sécurité
-Le programme a été conçu pour être stable et éviter les crashs. Les principales sécurités mises en place sont :
--Vérification stricte des saisies utilisateur.
--Gestion des fichiers inexistants.
--Contrôle des limites mémoire.
--Validation des réponses et gestion des erreurs de format.
+Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du terminal.
 
-🧠 Concepts techniques appliqués
-Ce projet nous a permis de consolider les notions suivantes :
--Structures (struct) : Pour modéliser les questions et les QCM.
--Tableaux & Pointeurs : Pour la manipulation des données en mémoire.
--Fichiers : Lecture et écriture de fichiers binaires/texte.
--Modularité : Séparation du code en fichiers .c et .h.
--Interface : Création de menus interactifs dans le terminal.
-
-🎨 Références couleurs (Affichage terminal)
-
-Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité en terminal.
-
-| Couleur   | Code ANSI                | Aperçu                         |
-|-----------|--------------------------|--------------------------------|
-| 🔴 Rouge  | `\033[91m`               | `RED`                          |
-| 🔵 Bleu   | `\033[94m`               | `BLUE`                         |
-| 🏴 Magenta| `\033[35m`               | `MAGENTA`                      |
-| 🟢 Vert   | `\033[92m`               | `GREEN`                        |
-| ♻️ Reset  | `\033[0m`                | Réinitialisation des couleurs `RESET` |
-| 🌊 Cyan   | `\033[96m`               | `CYAN`                         |
-| 🟠 Orange | `\033[38;5;214m`         | `ORANGE`                       |
-
-🔗 Liens & Démonstration
-Dépôt Git : https://github.com/samahazh/MI2-G-Questions-pour-un-Tekien-.git
-📌 Aperçu de l'application :
-"mettre des photo du menu et de chaque fichier"
-
+| Couleur| Code ANSI utilisé | Utilisation principale               |
+|--------|-------------------|--------------------------------------|
+| Bleu   | `\033[1;34m`      | Titres et menus principaux           |
+| Rouge  | `\033[1;31m`      | Mode Enseignant et Messages d'erreur |
+| Vert   | `\033[1;32m`      | Mode Étudiant et Bonne réponse       |
+| Rose   | `\033[1;35m`      | Quitter et indications spécifiques   |
+| Gras   | `\033[1m`         | Énoncés des questions                |
+| Défaut | `\033[0m`         | Réinitialisation (fin de couleur)    |
  
