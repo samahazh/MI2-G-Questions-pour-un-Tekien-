@@ -1,26 +1,26 @@
 #include <stdio.h>    // Bibliothèque pour utiliser printf et fgets (affichage et saisie)
 #include <stdlib.h>   // Bibliothèque pour utiliser atoi (convertir du texte en chiffre)
 #include <string.h>   // Bibliothèque pour manipuler les chaines de caracteres (ex: strcmp, strcspn)
-#include "qcm_structure.h" // Contient nos structures
-#include "teachers.h"      
+#include "qcm_structure.h" // Contient nos structures 
+#include "enseignant.h"    // Permet de faire le lien avec les fonctions du prof
 
 /* ================= COULEURS ================= */
-#define COLOR_RESET  "\033[0m"
-#define COLOR_BLUE   "\033[1;34m"
-#define COLOR_RED    "\033[1;31m"
-#define COLOR_GREEN  "\033[1;32m"
-#define COLOR_YELLOW "\033[1;33m" 
+#define COULEUR_DEFAUT "\033[0m"
+#define COULEUR_BLEU   "\033[1;34m"
+#define COULEUR_ROUGE  "\033[1;31m"
+#define COULEUR_VERT   "\033[1;32m"
+#define COULEUR_JAUNE  "\033[1;33m" 
 /* ===================================================== */
 
-void launchTeacherMode() {
+void lancerModeEnseignant() {
     char motDePasseSaisi[50]; // Tableau pour stocker le mot de passe tapé par l'utilisateur
     const char vraiMotDePasse[] = "prof123"; // Le mot de passe secret 
-    char bufferSaisie[MAX_TEXT]; // Zone temporaire pour lire les saisies texte
+    char bufferSaisie[MAX_TEXTE]; // Zone temporaire pour lire les saisies texte
 
     // --- AFFICHAGE DU MENU ENSEIGNANT ---
-    printf(COLOR_RED "\n==========================================\n" COLOR_RESET);
-    printf(COLOR_RED "             MODE ENSEIGNANT\n" COLOR_RESET);
-    printf(COLOR_RED "==========================================\n" COLOR_RESET);
+    printf(COULEUR_ROUGE "\n==========================================\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "             MODE ENSEIGNANT\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "==========================================\n" COULEUR_DEFAUT);
     printf("Mot de passe requis : ");
     
     // --- VÉRIFICATION DU MOT DE PASSE ---
@@ -31,20 +31,20 @@ void launchTeacherMode() {
     // strcmp compare deux textes. S'ils sont identiques, elle renvoie 0.
     // Si c'est différent de 0, c'est que le mot de passe est faux.
     if (strcmp(motDePasseSaisi, vraiMotDePasse) != 0) {
-        printf(COLOR_RED "\nMot de passe incorrect ! Acces refuse.\n" COLOR_RESET);
+        printf(COULEUR_ROUGE "\nMot de passe incorrect ! Acces refuse.\n" COULEUR_DEFAUT);
         return; // On stoppe la fonction et on retourne au menu principal
     }
 
     // Si on arrive ici, c'est que le mot de passe est bon
-    printf(COLOR_GREEN "\nConnexion reussie ! Bienvenue dans l'espace de creation.\n" COLOR_RESET);
+    printf(COULEUR_VERT "\nConnexion reussie ! Bienvenue dans l'espace de creation.\n" COULEUR_DEFAUT);
 
     // --- PRÉPARATION DU QCM ---
     QCM nouveauQCM; // On crée une variable "nouveauQCM" 
     char nomFichier[100]; // Pour stocker le nom du fichier
 
-    printf(COLOR_RED "\n------------------------------------------\n" COLOR_RESET);
-    printf(COLOR_RED "           CONFIGURATION DU QCM\n" COLOR_RESET);
-    printf(COLOR_RED "------------------------------------------\n" COLOR_RESET);
+    printf(COULEUR_ROUGE "\n------------------------------------------\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "           CONFIGURATION DU QCM\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "------------------------------------------\n" COULEUR_DEFAUT);
     
     printf("Nom du fichier a creer (ex: quizz.bin) : ");
     fgets(nomFichier, sizeof(nomFichier), stdin);
@@ -53,38 +53,38 @@ void launchTeacherMode() {
     // Configuration
     printf("Nombre de questions : ");
     fgets(bufferSaisie, sizeof(bufferSaisie), stdin);
-    nouveauQCM.num_questions = atoi(bufferSaisie); // atoi transforme le texte saisi en vrai nombre 
+    nouveauQCM.nb_questions = atoi(bufferSaisie); // atoi transforme le texte saisi en vrai nombre 
 
     printf("Activer les points negatifs ? (1=Oui, 0=Non) : ");
     fgets(bufferSaisie, sizeof(bufferSaisie), stdin);
-    nouveauQCM.rules.negative_points = atoi(bufferSaisie); // On enregistre ce choix dans les règles 
+    nouveauQCM.regles.points_negatifs = atoi(bufferSaisie); // On enregistre ce choix dans les règles 
 
     printf("Activer les reponses multiples ? (1=Oui, 0=Non) : ");
     fgets(bufferSaisie, sizeof(bufferSaisie), stdin);
-    nouveauQCM.rules.multiple_answers = atoi(bufferSaisie);
+    nouveauQCM.regles.reponses_multiples = atoi(bufferSaisie);
 
     printf("Activer le mode sequentiel ? (1=Oui, 0=Non) : ");
     fgets(bufferSaisie, sizeof(bufferSaisie), stdin);
-    nouveauQCM.rules.sequential_mode = atoi(bufferSaisie);
+    nouveauQCM.regles.mode_sequentiel = atoi(bufferSaisie);
 
     // --- CRÉATION DES QUESTIONS ---
     // Cette boucle tourne autant de fois qu'il y a de questions choisies
-    for (int i = 0; i < nouveauQCM.num_questions; i++) {
-        printf(COLOR_RED "\nQuestion %d :\n" COLOR_RESET, i + 1);
+    for (int i = 0; i < nouveauQCM.nb_questions; i++) {
+        printf(COULEUR_ROUGE "\nQuestion %d :\n" COULEUR_DEFAUT, i + 1);
         printf("  Enonce : ");
-        fgets(nouveauQCM.questions[i].statement, MAX_TEXT, stdin);
-        nouveauQCM.questions[i].statement[strcspn(nouveauQCM.questions[i].statement, "\n")] = 0;
+        fgets(nouveauQCM.questions[i].enonce, MAX_TEXTE, stdin);
+        nouveauQCM.questions[i].enonce[strcspn(nouveauQCM.questions[i].enonce, "\n")] = 0;
 
-        // Cette boucle sert à demander les propositions (MAX_OPTIONS fois) pour chaque question
-        for (int j = 0; j < MAX_OPTIONS; j++) {
+        // Cette boucle sert à demander les propositions (MAX_CHOIX fois) pour chaque question
+        for (int j = 0; j < MAX_CHOIX; j++) {
             printf("  Proposition %d : ", j + 1);
-            fgets(nouveauQCM.questions[i].options[j], MAX_TEXT, stdin);
-            nouveauQCM.questions[i].options[j][strcspn(nouveauQCM.questions[i].options[j], "\n")] = 0;
+            fgets(nouveauQCM.questions[i].propositions[j], MAX_TEXTE, stdin);
+            nouveauQCM.questions[i].propositions[j][strcspn(nouveauQCM.questions[i].propositions[j], "\n")] = 0;
             
             printf("  Est-elle vraie ? (1=Oui, 0=Non) : ");
             fgets(bufferSaisie, sizeof(bufferSaisie), stdin);
             // On enregistre si cette proposition est la bonne réponse (1) ou non (0)
-            nouveauQCM.questions[i].correct_answers[j] = atoi(bufferSaisie);
+            nouveauQCM.questions[i].bonnes_reponses[j] = atoi(bufferSaisie);
         }
     }
 
@@ -95,9 +95,9 @@ void launchTeacherMode() {
         // On prend TOUTE la variable nouveauQCM, et on copie sa taille dans le fichier
         fwrite(&nouveauQCM, sizeof(QCM), 1, f);
         fclose(f); // On ferme le fichier
-        printf(COLOR_GREEN "\nLe QCM a ete sauvegarde avec succes dans '%s' !\n\n" COLOR_RESET, nomFichier);
+        printf(COULEUR_VERT "\nLe QCM a ete sauvegarde avec succes dans '%s' !\n\n" COULEUR_DEFAUT, nomFichier);
     } else { 
         // Si l'ordinateur refuse de créer le fichier 
-        printf(COLOR_RED "Erreur lors de la creation du fichier.\n" COLOR_RESET);
+        printf(COULEUR_ROUGE "Erreur lors de la creation du fichier.\n" COULEUR_DEFAUT);
     }
 }
