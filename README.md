@@ -105,12 +105,12 @@ Le programme intègre des sécurités pour empêcher les erreurs lors de l'utili
 
 Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du terminal.
 
-| Couleur| Code ANSI utilisé | Utilisation principale               |
-|--------|-------------------|--------------------------------------|
-| Bleu   | `\033[1;34m`      | Titres et menus principaux           |
-| Rouge  | `\033[1;31m`      | Mode Enseignant et Messages d'erreur |
-| Vert   | `\033[1;32m`      | Mode Étudiant et Bonne réponse       |
-| Rose   | `\033[1;35m`      | Quitter et indications spécifiques   |
-| Gras   | `\033[1m`         | Énoncés des questions                |
-| Défaut | `\033[0m`         | Réinitialisation (fin de couleur)    |
+| Couleur| Code ANSI utilisé | Utilisation principale                 |
+|----------|-------------------|--------------------------------------|
+| Bleu 🔵  | `\033[1;34m`      | Titres et menus principaux           |
+| Rouge 🔴 | `\033[1;31m`      | Mode Enseignant et Messages d'erreur |
+| Vert 🟢  | `\033[1;32m`      | Mode Étudiant et Bonne réponse       |
+| Rose 🟣  | `\033[1;35m`      | Quitter et indications spécifiques   |
+| Gras ⚫️  | `\033[1m`         | Énoncés des questions                |
+| Défaut ⚪️| `\033[0m`         | Réinitialisation (fin de couleur)    |
  
