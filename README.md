@@ -124,7 +124,7 @@ Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité en
 | 🟠 Orange | `\033[38;5;214m`         | `ORANGE`                       |
 
 🔗 Liens & Démonstration
-Dépôt Git : 
+Dépôt Git : https://github.com/samahazh/MI2-G-Questions-pour-un-Tekien-.git
 📌 Aperçu de l'application :
 "mettre des photo du menu et de chaque fichier"
 
