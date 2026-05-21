@@ -2,7 +2,7 @@
 
 Projet réalisé dans le cadre du module **Informatique – PréING1 2025-2026**
 
-## Équipe :
+## Équipe MI2 - G:
 
 * Brahimi Sarah
 * Azhani Samah
