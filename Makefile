@@ -2,7 +2,7 @@
 EXEC = programme_qcm
 
 # SRC : liste de tous les fichiers sources (fichiers.c)
-SRC = main.c student.c teachers.c
+SRC = main.c etudiant.c enseignant.c
 
 # CC = C Compiler. On utilise le compilateur "gcc".
 CC = gcc
