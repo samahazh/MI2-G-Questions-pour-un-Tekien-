@@ -47,6 +47,9 @@ Ce projet met en pratique des notions de la programmation en C : la gestion de f
 ## Fonctionnalités principales :
 
 ### Mode Enseignant
+
+<img width="415" height="171" alt="Capture d’écran 2026-05-22 à 03 55 54" src="https://github.com/user-attachments/assets/9d7b112f-8222-4e85-a34b-f15a34368b7d" />
+
 Le mode enseignant est l'espace de gestion des QCM, protégé par un mot de passe (`prof123`).
 
 **Il permet de :**
@@ -62,6 +65,9 @@ Le mode enseignant est l'espace de gestion des QCM, protégé par un mot de pass
 * Mode séquentiel (obligation de répondre pour passer à la suite).
 
 ### Mode Étudiant
+
+<img width="528" height="254" alt="Capture d’écran 2026-05-22 à 03 57 56" src="https://github.com/user-attachments/assets/be5fd5ed-8e23-4901-8f1a-c84e6ffb3984" />
+
 Le mode étudiant est l'espace d'évaluation.
 
 **Il permet de :**
