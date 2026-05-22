@@ -30,6 +30,8 @@ Pour supprimer l'exécutable généré :
 
 ## Présentation du projet :
 
+<img width="316" height="137" alt="Capture d’écran 2026-05-22 à 03 54 02" src="https://github.com/user-attachments/assets/8c0ce183-aff6-41e9-9b76-f50c9cfe495c" />
+
 Ce projet consiste à développer une application de gestion de QCM en langage C, fonctionnant dans le terminal à travers différents menus. Elle est faite pour les enseignants (pour la création des QCM) et les étudiants (pour passer l'évaluation).
 
 **L’objectif principal est de proposer une plateforme permettant de :**
