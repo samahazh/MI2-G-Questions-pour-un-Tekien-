@@ -48,7 +48,7 @@ Ce projet met en pratique des notions de la programmation en C : la gestion de f
 
 ### Mode Enseignant
 
-<img width="408" height="214" alt="Capture d’écran 2026-05-22 à 10 46 32" src="https://github.com/user-attachments/assets/88257e3a-0b76-432a-8b95-9caac992d209" />
+<img width="438" height="218" alt="Capture d’écran 2026-05-22 à 10 47 10" src="https://github.com/user-attachments/assets/aa88e69d-3c1f-48c6-ac0d-cfe83a0c747b" />
 
 Le mode enseignant est l'espace de gestion des QCM, protégé par un mot de passe (`prof123`).
 
