@@ -3,6 +3,10 @@
 
 #include "qcm_structure.h" // Contient nos structures
 
-void lancerModeEtudiant(); // Fonction principale qui lance le menu de l'étudiant
+/*
+ * Fonction principale du mode etudiant.
+ * Appelée depuis le menu principal pour gérer le passage du QCM et la notation.
+ */
+void lancerModeEtudiant(); 
 
 #endif
