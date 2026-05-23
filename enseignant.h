@@ -3,6 +3,11 @@
 
 #include "qcm_structure.h" // Contient nos structures
 
-void lancerModeEnseignant(); // Fonction principale qui lance le menu du prof 
+/*
+ * Fonction principale du mode enseignant.
+ * Appelée depuis le menu principal pour gérer la création de QCM.
+ */
+void lancerModeEnseignant(); 
 
 #endif
+
