@@ -4,7 +4,7 @@ EXEC = programme_qcm
 # SRC : liste de tous les fichiers sources (fichiers.c)
 SRC = main.c etudiant.c enseignant.c
 
-# CC = C Compiler. On utilise le compilateur "gcc".
+# CC = C Compiler (compilateur "gcc").
 CC = gcc
 
 # CFLAGS (C Flags) : les options de compilation. 
@@ -14,7 +14,7 @@ CFLAGS = -Wall -Wextra -std=c11
 # Demande a fabriquer l'executable final.
 all: $(EXEC)
 
-# Créer le programme final ($(EXEC)) a partir des petits fichiers sources
+# Créer le programme final ($(EXEC)) a partir des fichiers sources.
 $(EXEC): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 
