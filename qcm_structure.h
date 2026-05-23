@@ -12,7 +12,7 @@ typedef struct {
     int mode_sequentiel;    
 } Parametres;     
 
-// Structure pour une question individuelle
+// Structure pour une question
 typedef struct {
     char enonce[MAX_TEXTE];                       
     char propositions[MAX_CHOIX][MAX_TEXTE];    
