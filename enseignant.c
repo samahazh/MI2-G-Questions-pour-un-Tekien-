@@ -84,7 +84,7 @@ int verifierMotDePasse() {
     char vraiMotDePasse[] = "prof123";
     
     printf(COULEUR_ROUGE "\n==========================================\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "                 MODE ENSEIGNANT\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "               MODE ENSEIGNANT\n" COULEUR_DEFAUT);
     printf(COULEUR_ROUGE "==========================================\n" COULEUR_DEFAUT);
     printf("Mot de passe requis : ");
     
@@ -128,9 +128,9 @@ void lancerModeEnseignant() {
     QCM nouveauQCM;
     char nomFichier[100];
 
-    printf(COULEUR_ROUGE "\n-----------------------------------------------\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "               CONFIGURATION DU QCM\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "-----------------------------------------------\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "\n---------------------------------------------\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "             CONFIGURATION DU QCM\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "---------------------------------------------\n" COULEUR_DEFAUT);
     
     printf("Nom du fichier a creer (ex: quizz.bin) : ");
     demanderNomFichier(nomFichier);
