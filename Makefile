@@ -7,14 +7,14 @@ SRC = main.c etudiant.c enseignant.c
 # CC = C Compiler (compilateur "gcc").
 CC = gcc
 
-# CFLAGS (C Flags) : les options de compilation. 
-# -Wall et -Wextra : activent les avertissements de securite.
+# CFLAGS (C Flags) : les options de compilation
+# -Wall et -Wextra : activent les avertissements de sécurité
 CFLAGS = -Wall -Wextra -std=c11
 
-# Demande a fabriquer l'executable final.
+# Demande à fabriquer l'exécutable final
 all: $(EXEC)
 
-# Créer le programme final ($(EXEC)) a partir des fichiers sources.
+# Créer le programme final ($(EXEC)) à partir des fichiers sources
 $(EXEC): $(SRC)
 	$(CC) $(CFLAGS) $(SRC) -o $(EXEC)
 
