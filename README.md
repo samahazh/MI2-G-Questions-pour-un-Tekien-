@@ -111,6 +111,6 @@ Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du
 | Défaut ⚪️| `\033[0m`         | Réinitialisation (fin de couleur)    |
 
 
-# Équipe MI2 - G : Projet réalisé par Azhani Samah,Brahimi Sarah,Rasamuraly Atcchaya dans le cadre de la matière Informatique - Préing1 / 2025-2026
+### Équipe MI2 - G : Projet réalisé par Azhani Samah,Brahimi Sarah,Rasamuraly Atcchaya dans le cadre de la matière Informatique - Préing1 / 2025-2026
 
  
