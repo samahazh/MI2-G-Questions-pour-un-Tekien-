@@ -99,7 +99,7 @@ Le programme intègre des sécurités pour empêcher les erreurs lors de l'utili
 
 ## Références couleurs :
 
-Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du terminal.
+* Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du terminal.
 
 | Couleur| Code ANSI utilisé | Utilisation principale                 |
 |----------|-------------------|--------------------------------------|
