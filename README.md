@@ -112,6 +112,6 @@ Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du
 
 ---
 
-Équipe MI2 - G : Projet réalisé par Azhani Samah,Brahimi Sarah,Rasamuraly Atcchaya dans le cadre de la matière Informatique - Préing1 / 2025-2026
+Projet réalisé par Azhani Samah, Brahimi Sarah, Rasamuraly Atcchaya (Équipe MI2 - G) dans le cadre de la matière "Informatique - Préing1 - 2025/2026"
 
  
