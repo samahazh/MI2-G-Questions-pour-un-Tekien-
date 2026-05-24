@@ -1,13 +1,5 @@
 # Questions pour un Tekien - Projet QCM
 
-## Équipe MI2 - G :
-
-* Brahimi Sarah
-* Azhani Samah
-* Rasamuraly Atcchaya
-
----
-
 ## Compilation et Exécution :
 
 Le projet utilise un fichier `Makefile` pour faciliter la compilation : 
@@ -94,8 +86,6 @@ Le code est modulé pour une meilleure lisibilité :
 ## Sauvegarde des QCM :
 
 Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom du QCM créé par l'enseignant.
-*Exemples : `sciences.bin`, `culture.bin`, `sport.bin`.*
-
 ---
 
 ## Sécurité :
@@ -119,4 +109,8 @@ Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du
 | Rose 🟣  | `\033[1;35m`      | Quitter et indications spécifiques   |
 | Gras ⚫️  | `\033[1m`         | Énoncés des questions                |
 | Défaut ⚪️| `\033[0m`         | Réinitialisation (fin de couleur)    |
+
+
+# Équipe MI2 - G : Projet réalisé par Azhani Samah,Brahimi Sarah,Rasamuraly Atcchaya dans le cadre de la matière Informatique - Préing1 / 2025-2026
+
  
