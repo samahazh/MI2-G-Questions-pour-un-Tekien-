@@ -7,6 +7,8 @@
 /*
  * Gère la saisie de l'étudiant pour une question a choix multiples.
  * Remplit le tableau choixEleveTableau et retourne 1 s'il a répondu, 0 s'il a passée.
+ * Paramètres : le pointeur vers la structure du QCM, le tableau pour enregistrer les réponses de l'étudiant.
+ * Renvoie : 1 si l'étudiant a répondu, 0 s'il a passé la question.
  */
 int gererChoixMultiples(QCM *monQuiz, int choixEleveTableau[]) {
     char saisie[MAX_TEXTE];
@@ -45,6 +47,7 @@ int gererChoixMultiples(QCM *monQuiz, int choixEleveTableau[]) {
         }
     } while (nbChoix < 1 || nbChoix > MAX_CHOIX);
 
+    // Boucle pour récupérer chaque choix.
     for (int k = 0; k < nbChoix; k++) {
         int rep = -1;
         do {
@@ -62,6 +65,7 @@ int gererChoixMultiples(QCM *monQuiz, int choixEleveTableau[]) {
             }
         } while (rep < 1 || rep > MAX_CHOIX);
 
+        // On enregistre la réponse dans le tableau à l'indice correspondant.
         choixEleveTableau[rep - 1] = 1;
         aRepondu = 1;
     }
@@ -71,6 +75,8 @@ int gererChoixMultiples(QCM *monQuiz, int choixEleveTableau[]) {
 /*
  * Gère la saisie de l'étudiant pour une question a choix unique.
  * Remplit le tableau choixEleveTableau et retourne 1 s'il a repondu, 0 s'il a passée.
+ * Paramètres : le pointeur vers la structure du QCM, le tableau pour enregistrer la réponse de l'étudiant.
+ * Renvoie : 1 si l'étudiant a répondu, 0 s'il a passé la question.
  */
 int gererChoixUnique(QCM *monQuiz, int choixEleveTableau[]) {
     char saisie[MAX_TEXTE];
@@ -104,7 +110,7 @@ int gererChoixUnique(QCM *monQuiz, int choixEleveTableau[]) {
 
         if (choixEleve == 0 && monQuiz->regles.mode_sequentiel == 0) {
             printf(COULEUR_ROUGE "Question passee.\n" COULEUR_DEFAUT);
-            return 0; // Il n'a rien repondu
+            return 0; 
         }
     } while (choixEleve < 1 || choixEleve > MAX_CHOIX);
 
@@ -114,6 +120,7 @@ int gererChoixUnique(QCM *monQuiz, int choixEleveTableau[]) {
 
 /*
  * Affiche la correction detaillee et la note finale de l'étudiant.
+ * Paramètres : structure du QCM pour afficher les bonnes réponses, le score calculé. 
  */
 void afficherCorrection(QCM monQuiz, float scoreFinal) {
     printf(COULEUR_VERT "\n==========================================\n" COULEUR_DEFAUT);
@@ -147,7 +154,7 @@ void afficherCorrection(QCM monQuiz, float scoreFinal) {
 
 /*
  * Fonction principale du mode Etudiant.
- * Ouvre le fichier, gère le déroulement du QCM et calcule le score.
+ * Elle permet la lecture du fichier, la gestion du déroulement du QCM, le calcul du score avec la correctio et l'affichage du résultat final.
  */
 void lancerModeEtudiant() {
     QCM monQuiz; 
@@ -157,13 +164,14 @@ void lancerModeEtudiant() {
     printf(COULEUR_VERT "              MODE ETUDIANT\n" COULEUR_DEFAUT);
     printf(COULEUR_VERT "==========================================\n" COULEUR_DEFAUT);
     
+    // Lecture du fichier :
     printf("Entrez le nom du fichier QCM a ouvrir (ex: quizz.bin) : ");
     fgets(saisie, sizeof(saisie), stdin); 
     saisie[strcspn(saisie, "\n")] = 0; 
 
     FILE *f = fopen(saisie, "rb");
     if (f != NULL) { 
-        fread(&monQuiz, sizeof(QCM), 1, f);
+        fread(&monQuiz, sizeof(QCM), 1, f); // Charge toutes les données du fichier dans monQuiz.
         fclose(f); 
     } else { 
         printf(COULEUR_ROUGE "\nImpossible de trouver le fichier '%s'\n" COULEUR_DEFAUT, saisie);
@@ -176,7 +184,10 @@ void lancerModeEtudiant() {
 
     float scoreFinal = 0; 
 
+    // Déroulement des questions :
     for (int i = 0; i < monQuiz.nb_questions; i++) {
+
+        // Initialise un tableau vide avec des 0 pour les réponses de l'élève à chaque nouvelle question.
         int choixEleveTableau[MAX_CHOIX] = {0}; 
         int aReponduQuelqueChose = 0; 
 
@@ -197,7 +208,10 @@ void lancerModeEtudiant() {
             aReponduQuelqueChose = gererChoixUnique(&monQuiz, choixEleveTableau);
         }
 
+        // Correction et notation :
         int correct = 1; 
+
+        // On compare le tableau rempli par l'élève avec le tableau des bonnes réponses de l'enseignant.
         for (int j = 0; j < MAX_CHOIX; j++) {
             if (choixEleveTableau[j] != monQuiz.questions[i].bonnes_reponses[j]) {
                 correct = 0;
@@ -222,6 +236,6 @@ void lancerModeEtudiant() {
             }
         }
     }
-
+    // Affichage du résultat final :
     afficherCorrection(monQuiz, scoreFinal);
 }

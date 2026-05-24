@@ -2,22 +2,24 @@
 #include <stdlib.h>   
 #include <string.h>  
 #include "qcm_structure.h"
-#include "enseignant.h" // Permet de faire le lien avec les fonctions du prof
+#include "enseignant.h" // Permet de faire le lien avec les fonctions de l'enseignant.
 
 /*
  * Force l'utilisateur à entrer un nom de fichier se terminant par ".bin".
  * Boucle tant que la saisie est invalide.
+ * Paramètres : le tableau où la fonction va stocker le nom tapé.
  */
 void demanderNomFichier(char nomFichier[]) {
     int valide = 0;
     do {
         fgets(nomFichier, 100, stdin);
-        nomFichier[strcspn(nomFichier, "\n")] = 0;
+        nomFichier[strcspn(nomFichier, "\n")] = 0;  // Supprime le saut de ligne '\n' ajouté automatiquement par fgets.
         
         int taille = strlen(nomFichier);
-        
+       
+        // On vérifie que le nom est assez long et on compare les 4 derniers caractères avec ".bin".
         if (taille >= 5 && strcmp(&nomFichier[taille - 4], ".bin") == 0) {
-            valide = 1; // C'est bon, on valide !
+            valide = 1;
         } else {
             printf(COULEUR_ROUGE "  -> Erreur : le nom du fichier doit se terminer par '.bin' (ex: quizz.bin) : " COULEUR_DEFAUT);
         }
@@ -26,8 +28,8 @@ void demanderNomFichier(char nomFichier[]) {
 
 /*
  * Force l'utilisateur à taper uniquement 0 ou 1.
- * Boucle tant que la saisie est invalide (lettres ou mauvais chiffres).
- * Retourne le choix sécurisé.
+ * Boucle tant que la saisie est invalide.
+ * Renvoie : le choix sécurisé.
  */
 int demanderOuiNon() {
     char saisie[MAX_TEXTE];
@@ -48,14 +50,16 @@ int demanderOuiNon() {
 
 /*
  * Force l'utilisateur à taper un nombre strictement supérieur à 0.
+ * Sécurise le nombre de questions pour le QCM.
  * Boucle tant que la saisie est invalide.
- * Retourne le nombre sécurisé.
+ * Renvoie : le nombre de question sécurisé.
  */
 int demanderNombrePositif() {
     char saisie[MAX_TEXTE];
-    int nombre = -1;
+    int nombre = 0;
     do {
         fgets(saisie, sizeof(saisie), stdin);
+
         if (saisie[0] != '\n' && saisie[0] != '0' && atoi(saisie) == 0) {
             printf(COULEUR_ROUGE "  -> Erreur : veuillez taper un nombre valide : " COULEUR_DEFAUT);
         } else {
@@ -63,26 +67,29 @@ int demanderNombrePositif() {
             if (nombre <= 0) {
                 printf(COULEUR_ROUGE "  -> Erreur : il faut au moins 1 question : " COULEUR_DEFAUT);
             }
+            else if (nombre > MAX_QUESTIONS) {
+                printf(COULEUR_ROUGE "  -> Erreur : le maximum est de %d questions : " COULEUR_DEFAUT, MAX_QUESTIONS);
+            }
         }
-    } while (nombre <= 0);
+    } while (nombre <= 0 || nombre > MAX_QUESTIONS);
     return nombre;
 }
 
 /*
  * Demande le mot de passe à l'enseignant et le vérifie.
- * Retourne 1 si le mot de passe est vrai, 0 si le mot de passe est faux.
+ * Renvoie : 1 si le mot de passe est vrai, 0 si le mot de passe est faux.
  */
 int verifierMotDePasse() {
     char motDePasseSaisi[50];
     char vraiMotDePasse[] = "prof123";
     
     printf(COULEUR_ROUGE "\n==========================================\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "                 MODE ENSEIGNANT\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "               MODE ENSEIGNANT\n" COULEUR_DEFAUT);
     printf(COULEUR_ROUGE "==========================================\n" COULEUR_DEFAUT);
     printf("Mot de passe requis : ");
     
     fgets(motDePasseSaisi, sizeof(motDePasseSaisi), stdin);
-    motDePasseSaisi[strcspn(motDePasseSaisi, "\n")] = 0; // Nettoyage de la touche Entrée
+    motDePasseSaisi[strcspn(motDePasseSaisi, "\n")] = 0; 
 
     if (strcmp(motDePasseSaisi, vraiMotDePasse) != 0) {
         printf(COULEUR_ROUGE "\nMot de passe incorrect ! Acces refuse.\n" COULEUR_DEFAUT);
@@ -95,12 +102,12 @@ int verifierMotDePasse() {
 
 /*
  * Enregistre la structure QCM remplie dans un fichier binaire.
- * Paramètres : le QCM à sauvegarder, et le nom du fichier.
+ * Paramètres : le QCM à sauvegarder, le nom du fichier.
  */
 void sauvegarderQCM(QCM qcm, char nomFichier[]) {
     FILE *f = fopen(nomFichier, "wb");
     if (f != NULL) { 
-        fwrite(&qcm, sizeof(QCM), 1, f);
+        fwrite(&qcm, sizeof(QCM), 1, f); // On écrit toute la structure QCM dans le fichier.
         fclose(f);
         printf(COULEUR_VERT "\nLe QCM a ete sauvegarde avec succes dans '%s' !\n\n" COULEUR_DEFAUT, nomFichier);
     } else { 
@@ -110,9 +117,10 @@ void sauvegarderQCM(QCM qcm, char nomFichier[]) {
 
 /*
  * Fonction principale du mode enseignant.
- * Elle permet la vérification, la configuration, la création et la sauvegarde.
+ * Elle permet l'authentification, la configuration, la création et la sauvegarde.
  */
 void lancerModeEnseignant() {
+    // Authentification :
     if (verifierMotDePasse() == 0) {
         return;
     }
@@ -120,9 +128,9 @@ void lancerModeEnseignant() {
     QCM nouveauQCM;
     char nomFichier[100];
 
-    printf(COULEUR_ROUGE "\n------------------------------------------\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "                 CONFIGURATION DU QCM\n" COULEUR_DEFAUT);
-    printf(COULEUR_ROUGE "------------------------------------------\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "\n---------------------------------------------\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "             CONFIGURATION DU QCM\n" COULEUR_DEFAUT);
+    printf(COULEUR_ROUGE "---------------------------------------------\n" COULEUR_DEFAUT);
     
     printf("Nom du fichier a creer (ex: quizz.bin) : ");
     demanderNomFichier(nomFichier);
@@ -134,11 +142,6 @@ void lancerModeEnseignant() {
     // Configuration du QCM :
     printf("Nombre de questions : ");
     nouveauQCM.nb_questions = demanderNombrePositif();
-
-    if (nouveauQCM.nb_questions > MAX_QUESTIONS) {
-    printf(COULEUR_ROUGE "  -> Erreur : le maximum est de %d questions.\n" COULEUR_DEFAUT, MAX_QUESTIONS);
-    nouveauQCM.nb_questions = MAX_QUESTIONS; 
-    }
 
     printf("Activer les points negatifs ? (1=Oui, 0=Non) : ");
     nouveauQCM.regles.points_negatifs = demanderOuiNon();
@@ -156,7 +159,7 @@ void lancerModeEnseignant() {
         fgets(nouveauQCM.questions[i].enonce, MAX_TEXTE, stdin);
         nouveauQCM.questions[i].enonce[strcspn(nouveauQCM.questions[i].enonce, "\n")] = 0;
 
-        int aDejaUneBonneReponse = 0; // Drapeau pour sécuriser le mode choix unique
+        int aDejaUneBonneReponse = 0; // Sert de sécurité si le QCM est paramétré en "choix unique".
 
         for (int j = 0; j < MAX_CHOIX; j++) {
             printf("  Proposition %d : ", j + 1);
@@ -181,7 +184,7 @@ void lancerModeEnseignant() {
             }
         }
     }
-
-    // Sauvegarde finale :
+    
+    // Sauvegarde :
     sauvegarderQCM(nouveauQCM, nomFichier);
 }

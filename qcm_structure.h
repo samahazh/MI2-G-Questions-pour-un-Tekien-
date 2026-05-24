@@ -13,21 +13,21 @@
 #define COULEUR_VERT   "\033[1;32m"
 #define COULEUR_ROSE   "\033[1;35m"
 
-// Structure pour les paramètres d'un QCM
+// Structure pour les paramètres d'un QCM :
 typedef struct {
     int points_negatifs;   
     int reponses_multiples; 
     int mode_sequentiel;    
 } Parametres;     
 
-// Structure pour une question
+// Structure pour une question :
 typedef struct {
     char enonce[MAX_TEXTE];                       
     char propositions[MAX_CHOIX][MAX_TEXTE];    
     int bonnes_reponses[MAX_CHOIX];   
 } Question;
 
-// Structure pour tout le QCM
+// Structure pour tout le QCM :
 typedef struct {
     char nom[MAX_TEXTE];            
     Parametres regles;               

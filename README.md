@@ -72,43 +72,24 @@ Le mode étudiant est l'espace d'évaluation.
 
 ---
 
-## Architecture du projet :
+## Informations sur le projet :
 
-Le code est modulé pour une meilleure lisibilité :
-* `main.c` : contient le menu principal de l'application.
-* `enseignant.c` / `enseignant.h` : code pour le mode Enseignant (création et configuration de QCM).
-* `etudiant.c` / `etudiant.h` : code pour le mode Étudiant (passage de QCM et notation).
-* `qcm_structure.h` : définition des structures (`QCM`, `Question`, `Parametres`).
-* `Makefile` : fichier de configuration pour la compilation.
-
----
-
-## Sauvegarde des QCM : 
-
-* Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom du QCM créé par l'enseignant.
----
-
-## Sécurité :
-
-Le programme intègre des sécurités pour empêcher les erreurs lors de l'utilisation :
-* Sécurité des saisies de l'utilisateur (lettres au lieu de chiffres, choix hors limites).
-* Vérification si le fichier existe bien avant de tenter de l'ouvrir.
-* Boucles de sécurité obligeant l'utilisateur à réessayer en cas d'erreur de saisie.
+* Architecture : Le code est divisé en modules pour une meilleure lisibilité.
+* Sauvegarde : Les QCM sont enregistrés dans des fichiers binaires (.bin).
+* Sécurité : Le programme intègre des sécurités pour empêcher les erreurs lors de l'utilisation (saisie utilisateur, ouverture des fichiers).
 
 ---
 
 ## Références couleurs :
 
-* Les couleurs sont utilisées dans les `printf` pour améliorer la lisibilité du terminal.
-
-| Couleur| Code ANSI utilisé | Utilisation principale                 |
-|----------|-------------------|--------------------------------------|
-| Bleu 🔵  | `\033[1;34m`      | Titres et menus principaux           |
-| Rouge 🔴 | `\033[1;31m`      | Mode Enseignant et Messages d'erreur |
-| Vert 🟢  | `\033[1;32m`      | Mode Étudiant et Bonne réponse       |
-| Rose 🟣  | `\033[1;35m`      | Quitter et indications spécifiques   |
-| Gras ⚫️  | `\033[1m`         | Énoncés des questions                |
-| Défaut ⚪️| `\033[0m`         | Réinitialisation (fin de couleur)    |
+| Couleur  |  Utilisation principale              |
+|----------|--------------------------------------|
+| Bleu 🔵  | Titres et menus principaux           |
+| Rouge 🔴 | Mode Enseignant et Messages d'erreur |
+| Vert 🟢  | Mode Étudiant et Bonne réponse       |
+| Rose 🟣  | Quitter et indications spécifiques   |
+| Gras ⚫️  | Énoncés des questions                |
+| Défaut ⚪️| Réinitialisation (fin de couleur)    |
 
 ---
 
