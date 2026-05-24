@@ -1,8 +1,8 @@
 #include <stdio.h>   
 #include <stdlib.h>  
 #include "qcm_structure.h" 
-#include "enseignant.h"    // Permet de faire le lien avec les fonctions du prof
-#include "etudiant.h"      // Permet de faire le lien avec les fonctions de l'étudiant
+#include "enseignant.h"    // Permet de faire le lien avec les fonctions de l'enseignant.
+#include "etudiant.h"      // Permet de faire le lien avec les fonctions de l'étudiant.
 
 /*
  * Code principal de l'application "Questions pour un Tekien".
@@ -12,9 +12,8 @@ int main() {
     int choix;
     char saisie[50];
 
-    // Boucle "do... while" : le menu s'affiche au moins une fois, et s'affiche tant que l'utilisateur ne tape pas 3.
+    // Boucle do...while : le menu s'affiche au moins une fois, et s'affiche tant que l'utilisateur ne tape pas 3.
     do {
-        // Affichage du menu principal
         printf(COULEUR_BLEU "\n==========================================\n" COULEUR_DEFAUT);
         printf(COULEUR_BLEU "          QUESTIONS POUR UN TEKIEN\n" COULEUR_DEFAUT); 
         printf(COULEUR_BLEU "==========================================\n" COULEUR_DEFAUT);
@@ -30,10 +29,9 @@ int main() {
         if (fgets(saisie, sizeof(saisie), stdin) != NULL) {
             choix = atoi(saisie);
         } else {
-            choix = 0; // Sécurité si erreur de lecture
+            choix = 0;
         }
 
-        // Redirection selon le choix :
         switch (choix) {
             case 1:
                 lancerModeEnseignant(); 
@@ -44,13 +42,12 @@ int main() {
                 break;
 
             case 3:
-                // Le programme sort de la boucle après ça
                 printf("\nAu revoir ! Merci d'avoir utilise l'application.\n\n");
                 break;
 
             default:
                 // Si l'utilisateur tape 4, 0 ou des lettres (atoi renvoie 0), on affiche une erreur
-                printf(COULEUR_ROUGE "\n   -> Erreur : saisie invalide ! Veuillez entrer un chiffre entre 1 et 3.\n"COULEUR_DEFAUT);
+                printf(COULEUR_ROUGE "  -> Erreur : saisie invalide ! Veuillez entrer un chiffre entre 1 et 3.\n"COULEUR_DEFAUT);
                 break;
         }
 
