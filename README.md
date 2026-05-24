@@ -1,7 +1,5 @@
 # Questions pour un Tekien - Projet QCM
 
-Projet réalisé dans le cadre du module **Informatique – PréING1 2025-2026**
-
 ## Équipe MI2 - G :
 
 * Brahimi Sarah
@@ -34,7 +32,7 @@ Pour supprimer l'exécutable généré :
 
 Ce projet consiste à développer une application de gestion de QCM en langage C, fonctionnant dans le terminal à travers différents menus. Elle est faite pour les enseignants (pour la création des QCM) et les étudiants (pour passer l'évaluation).
 
-**L’objectif principal est de proposer une plateforme permettant de :**
+**L’objectif principal est de proposer une application permettant de :**
 * Créer et enregistrer des QCM
 * Gérer les options de chaque QCM.
 * Faire passer des évaluations aux étudiants.
@@ -50,7 +48,7 @@ Ce projet met en pratique des notions de la programmation en C : la gestion de f
 
 <img width="438" height="218" alt="Capture d’écran 2026-05-22 à 10 47 10" src="https://github.com/user-attachments/assets/aa88e69d-3c1f-48c6-ac0d-cfe83a0c747b" />
 
-Le mode enseignant est l'espace de gestion des QCM, protégé par un mot de passe (`prof123`).
+Le mode enseignant est l'espace de création des QCM, protégé par un mot de passe (`prof123`).
 
 **Il permet de :**
 * Créer un nouveau QCM.
@@ -73,7 +71,7 @@ Le mode étudiant est l'espace d'évaluation.
 **Il permet de :**
 * Ouvrir un questionnaire existant.
 * Répondre aux questions.
-* Obtenir une correction automatique détaillée.
+* Obtenir une correction automatique.
 * Recevoir une note finale sur 20.
 
 **Selon les paramètres définis par l'enseignant, l’étudiant peut :**
@@ -85,11 +83,11 @@ Le mode étudiant est l'espace d'évaluation.
 ## Architecture du projet :
 
 Le code est modulé pour une meilleure lisibilité :
-* `main.c` : Contient le menu principal de l'application.
-* `enseignant.c` / `enseignant.h` : Code pour le mode Enseignant (création et configuration de QCM).
-* `etudiant.c` / `etudiant.h` : Code pour le mode Étudiant (passage de QCM et notation).
-* `qcm_structure.h` : Définition des structures (`QCM`, `Question`, `Parametres`).
-* `Makefile` : Fichier de configuration pour la compilation.
+* `main.c` : contient le menu principal de l'application.
+* `enseignant.c` / `enseignant.h` : code pour le mode Enseignant (création et configuration de QCM).
+* `etudiant.c` / `etudiant.h` : code pour le mode Étudiant (passage de QCM et notation).
+* `qcm_structure.h` : définition des structures (`QCM`, `Question`, `Parametres`).
+* `Makefile` : fichier de configuration pour la compilation.
 
 ---
 
@@ -103,7 +101,7 @@ Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom 
 ## Sécurité :
 
 Le programme intègre des sécurités pour empêcher les erreurs lors de l'utilisation :
-* Utilisation de `fgets` et `atoi` pour sécuriser les saisies de l'utilisateur (lettres au lieu de chiffres, choix hors limites).
+* Sécurité des saisies de l'utilisateur (lettres au lieu de chiffres, choix hors limites).
 * Vérification si le fichier existe bien avant de tenter de l'ouvrir.
 * Boucles de sécurité obligeant l'utilisateur à réessayer en cas d'erreur de saisie.
 
