@@ -135,6 +135,11 @@ void lancerModeEnseignant() {
     printf("Nombre de questions : ");
     nouveauQCM.nb_questions = demanderNombrePositif();
 
+    if (nouveauQCM.nb_questions > MAX_QUESTIONS) {
+    printf(COULEUR_ROUGE "  -> Erreur : le maximum est de %d questions.\n" COULEUR_DEFAUT, MAX_QUESTIONS);
+    nouveauQCM.nb_questions = MAX_QUESTIONS; 
+    }
+
     printf("Activer les points negatifs ? (1=Oui, 0=Non) : ");
     nouveauQCM.regles.points_negatifs = demanderOuiNon();
 
