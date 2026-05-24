@@ -50,7 +50,7 @@ int main() {
 
             default:
                 // Si l'utilisateur tape 4, 0 ou des lettres (atoi renvoie 0), on affiche une erreur
-                printf(COULEUR_ROUGE "\n   -> Erreur : saisie invalide ! Veuillez entrer un chiffre entre 1 et 3.---\n"COULEUR_DEFAUT);
+                printf(COULEUR_ROUGE "\n   -> Erreur : saisie invalide ! Veuillez entrer un chiffre entre 1 et 3.\n"COULEUR_DEFAUT);
                 break;
         }
 
