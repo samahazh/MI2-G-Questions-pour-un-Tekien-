@@ -4,13 +4,6 @@
 #include "enseignant.h"    // Permet de faire le lien avec les fonctions du prof
 #include "etudiant.h"      // Permet de faire le lien avec les fonctions de l'étudiant
 
-// Couleur :
-#define COULEUR_DEFAUT "\033[0m"
-#define COULEUR_BLEU   "\033[1;34m"
-#define COULEUR_ROUGE  "\033[1;31m"
-#define COULEUR_VERT   "\033[1;32m"
-#define COULEUR_ROSE   "\033[1;35m"
-
 /*
  * Code principal de l'application "Questions pour un Tekien".
  * Affiche le menu principal et redirige vers le mode choisi.
@@ -57,8 +50,7 @@ int main() {
 
             default:
                 // Si l'utilisateur tape 4, 0 ou des lettres (atoi renvoie 0), on affiche une erreur
-                printf(COULEUR_ROUGE "\n--- Erreur : saisie invalide ! ---\n");
-                printf("--- Veuillez entrer un chiffre entre 1 et 3. ---\n\n" COULEUR_DEFAUT);
+                printf(COULEUR_ROUGE "\n   -> Erreur : saisie invalide ! Veuillez entrer un chiffre entre 1 et 3.\n"COULEUR_DEFAUT);
                 break;
         }
 

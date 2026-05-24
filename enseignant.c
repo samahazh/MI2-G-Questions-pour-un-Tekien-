@@ -4,12 +4,6 @@
 #include "qcm_structure.h"
 #include "enseignant.h" // Permet de faire le lien avec les fonctions du prof
 
-// Couleurs :
-#define COULEUR_DEFAUT "\033[0m"
-#define COULEUR_BLEU   "\033[1;34m"
-#define COULEUR_ROUGE  "\033[1;31m"
-#define COULEUR_VERT   "\033[1;32m"
-
 /*
  * Force l'utilisateur à entrer un nom de fichier se terminant par ".bin".
  * Boucle tant que la saisie est invalide.
