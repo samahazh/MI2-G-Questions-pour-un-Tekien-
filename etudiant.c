@@ -4,14 +4,6 @@
 #include "qcm_structure.h" 
 #include "etudiant.h"      // Permet de faire le lien avec les fonctions de l'étudiant
 
-// Couleurs :
-#define COULEUR_DEFAUT "\033[0m"
-#define TEXTE_GRAS     "\033[1m"
-#define COULEUR_BLEU   "\033[1;34m"
-#define COULEUR_ROUGE  "\033[1;31m"
-#define COULEUR_VERT   "\033[1;32m"
-#define COULEUR_ROSE   "\033[1;35m" 
-
 /*
  * Gère la saisie de l'étudiant pour une question a choix multiples.
  * Remplit le tableau choixEleveTableau et retourne 1 s'il a répondu, 0 s'il a passée.
