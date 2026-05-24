@@ -85,7 +85,7 @@ Le code est modulé pour une meilleure lisibilité :
 
 ## Sauvegarde des QCM : 
 
-Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom du QCM créé par l'enseignant.
+* Les QCM sont enregistrés dans des fichiers `.bin`. Chaque fichier porte le nom du QCM créé par l'enseignant.
 ---
 
 ## Sécurité :
